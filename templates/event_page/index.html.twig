@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CR13 - Laura Moldovan
+{% endblock %}
+
+{% block main %}
+	
+
+	<div class="p-5">
+
+		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 p-5 g-2">
+
+			{% for x in eventPage %}
+			<div class='col p-3'>
+				<div class="card even shadow-lg bg-body rounded">
+					<img src=url("{{x.image}}") class="card-img-top" alt="{{x.name}}">
+                    <div class="card-header">
+                        <h5 class="card-title text-center">{{x.name}}</h5>
+                    </div>
+					<div class="card-body">
+						<p class="card-text"><b>On </b>{{x.date|date('F j, Y, g:i a')}}</p>
+						<p class="card-text"><b>Adress: </b>{{x.address}}</p>
+						<p class="h5 text-end">{{x.type}}</p>
+					</div>
+					<div class="card-footer">
+						<a class ="btn btn-info btn-small" href="/details/{{x.id}}">
+						&#128065
+						</a>
+						<a class ="btn btn-info btn-small" href="/edit/{{x.id}}">
+						&#128393
+						</a>
+						<a class ="btn btn-info btn-small" href="/delete/{{x.id}}">
+						&#128465
+						</a>
+					</div>
+				</div>
+			</div>
+
+			{% endfor %}
+
+		</div>
+	</div>
+{% endblock %}
+
+{# 
+insert into event values 
+(1, "Alicia Keys Concert", "2021-11-18 20:30:00", "Alicia Keys on Europe Tour, presents her newest Album", "https://www.essence.com/wp-content/uploads/2013/06/images/2013/06/05/alicia-keys.jpg?width=1920", 1000, "alicia@keys.com", "+43 676 88 99 777", "Burggasse Stadthalle 17, 1150 Wien", "www.aliciakeys.com", "MUSIC"),
+(2, "Rapid Vienna - Real Madrid", "2021-11-15 18:00:00", "Football Match: Rapid Vienna plays agains Real Madrid.", "https://wallpapers-fenix.eu/lar/141213/030327490.jpg", 10000, "football@keys.com", "+43 1 7280854", "Ernst-Happel-Stadion, Meiereistraße 7, 1020 Wien", "www.wienersportstaetten.at", "SPORT"),
+(3, "Harry Potter: Return to Hogwarts", "2022-01-01 20:00:00", "For the 20th anniversary of ``Harry Potter and the Philosophers Stone`` there will be a special reunion.", "https://d.newsweek.com/en/full/1662542/harry-potter-netflix.webp?w=790&f=75bf3580156a45cfd9efb2f250d6812d", 300, "harry@kino.com", "+43 676 88 99 777", "Cineplexx Wienerberg City 11, 1100 Wien", "www.cineplexx.com", "MOVIE"),
+(4, "Cats - Das Musical", "2021-11-04 19:30:00", "The United Bühnen Wien is showing the world-famous musical in a new version of the original production in German at the Ronacher.", "https://images2.minutemediacdn.com/image/upload/c_crop,h_1799,w_3200,x_0,y_0/f_auto,q_auto,w_1100/v1553099114/shape/mentalfloss/84660-gettyimages-87218559.jpg", 300, "cats@ronacher.com", "+43 676 11 22 333", "Seilerstätte 9, 1010 Wien - Innere Stadt", "www.musicalvienna.at", "THEATER"),
+(5, "Dr. Dre Concert", "2021-11-23 20:30:00", "Dr. Dre on Europe Tour, presents his newest Album", "https://hey-alex.fr/actu/wp-content/uploads/2018/06/dr-dre-biopic-marvin-gaye-bientot-droits-dauteur.png", 2000, "dre@gmail.com", "+43 676 88 99 777", "Burggasse Stadthalle 17, 1150 Wien", "www.drdre.com", "MUSIC"),
+(6, "Red Bull BC1", "2021-11-24 21:30:00", "Red Bull BC One is the biggest and most prestigious one-on-one breaking competition in the world.", "https://cdn.pixabay.com/photo/2017/08/07/11/08/break-dance-2602691_1280.jpg", 3000, "bc1@redbull.com", "+43 676 88 99 777", "Burggasse Stadthalle 17, 1150 Wien", "www.redbull.com", "SPORT"),
+(7, "Spider-Man: No Way Home", "2021-11-24 20:30:00", "When a spell goes wrong, dangerous enemies from other worlds emerge, forcing Peter to discover what it really means to be Spider-Man.", "https://www.activenoon.com/wp-content/uploads/2021/11/Watch-New-Movie-of-Spider-Man-No-Way-Home.jpeg", 500, "spiderman@marvel.com", "+43 676 88 99 777",  "Cineplexx Wienerberg City 11, 1100 Wien", "www.cineplexx.com", "MOVIE"),
+(8, "Roma Armee", "2021-11-25 20:30:00", "At a time when Europe is at risk of drifting into neo-fascism, a group of actors is calling for a Roma army for the purpose of self-defence.", "https://www.gorki.de/sites/default/files/styles/large_l/public/2017-07/romaarmeefraktion3_web.jpg?itok=H0Sy0XgH", 1000, "roma@armee.com",  "+43 30 20221 115", "Seilerstätte 9, 1010 Wien - Innere Stadt", "www.musicalvienna.at", "THEATER"),
+(9, "Justin Timberlake Concert", "2021-11-18 20:30:00", "Justin Timberlake on Europe Tour, presents his newest Album", "https://hey-alex.fr/actu/wp-content/uploads/2018/02/justin-timberlake-concert-paris-2018-dernieres-minutes-pour-obtenir-ses-places.png", 1000, "justin@timberlake.com", "+43 676 88 99 777", "Burggasse Stadthalle 17, 1150 Wien", "www.justintimberlake.com", "MUSIC");
+
+#}
+

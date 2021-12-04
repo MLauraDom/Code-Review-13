@@ -1,0 +1,48 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Merienda+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+
+
+header {
+    background-image: url("../img/hero.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height:65vh;
+    display:flex;
+    flex-direction: column;
+    text-shadow: 7px 1px 9px #0c273d;
+    -webkit-text-stroke: 0.3px #f1b9ff;
+}
+
+nav{
+    font-family: 'Acme', sans-serif;
+}
+
+body{
+    background-color: black;
+    color:white;
+    font-family: 'Abril Fatface', cursive;
+}
+
+footer {
+    background-image: url(../img/footer.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height:15vh;
+}
+
+footer p {
+    text-shadow: 7px 1px 9px #0074a1;
+    -webkit-text-stroke: 0.3px #62007a;
+}
+
+.even {
+    background-image: linear-gradient(45deg, rgb(92, 3, 58),rgb(57, 202, 228),rgb(92, 3, 58));
+  }
+
+.titel {
+    font-family: 'Merienda One', cursive;
+  }
