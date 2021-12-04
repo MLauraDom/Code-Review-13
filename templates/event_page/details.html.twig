@@ -4,58 +4,36 @@
 {% endblock %}
 
 {% block main %}
-	<div class="bg-black p-5">
-		<div class="card m-auto">
-			<div class="row g-0 details">
-				<div class="col-md-6">
-					<img src="{{ event.image }}" class="img-fluid rounded-start details" alt="{{ event.name }}">
+	<div class="bg-black p-3">
+		<div class="row g-0 details">
+			<div class="details-pic">
+				<img src="{{ event.image }}"alt="{{ event.name }}">
+			</div>
+			<div class="details-text p-3">
+				<h5 class="card-title text-center">{{event.name}}</h5>
+
+				<p class="h5 text-center"><b>Category:</b>{{event.type}}</p>
+				<p><b>On</b>{{event.date|date('F j, Y, g:i a')}}</p>
+				<p><b>Adress:</b>{{event.address}}</p>
+				<p><b>Capacity:</b>{{event.capacity}}</p>
+				<p>{{event.description}}</p>
+				<div class="row g-5 p-2">
+					<div class="col-md-6">
+						<p><b>Website:</b></p>
+					</br>
+					<p>{{event.url}}</p>
 				</div>
-				<div class="col-md-6 even">
-					<div class="card-header">
-						<h5 class="card-title text-center">{{event.name}}</h5>
-					</div>
-					<div class="card-body">
-						<p class="h5 text-end">
-							<b>Category:
-							</b>
-							{{event.type}}</p>
-						<p class="card-text">
-							<b>On</b>
-							{{event.date|date('F j, Y, g:i a')}}</p>
-						<p class="card-text">
-							<b>Adress:</b>
-							{{event.address}}</p>
-						<p class="card-text">
-							<b>Capacity:</b>
-							{{event.capacity}}</p>
-						<p class="card-text">
-							{{event.description}}</p>
-						<div class="row g-5 p-2">
-							<div class="col-md-6">
-								<p>
-									<b>Website:
-									</b></br>
-									{{event.url}}</p>
-								<p></p>
-							</div>
-							<div class="col-md-6">
-								<p>
-									<b>Contact:</b>
-							</br>
-							{{event.email}}</br>
+					<div class="col-md-6">
+						<p><b>Contact:</b></p>
+						<p>{{event.email}}</br>
 						{{event.phone}}</p>
 					</div>
-
 				</div>
-			</div>
-			<div class="card-footer">
-				<a class="btn btn-info btn-small" href="/edit/{{event.id}}">
-					&#128393
-				</a>
-				<a class="btn btn-info btn-small" href="/delete/{{event.id}}">
-					&#128465
-				</a>
+				<div class="text-end">
+					<a class="btn btn-info btn-small" href="/edit/{{event.id}}">&#128393</a>
+					<a class="btn btn-info btn-small" href="/delete/{{event.id}}">&#128465</a>
+				</div>
 			</div>
 		</div>
 	</div>
-</div></div>{% endblock %}
+{% endblock %}

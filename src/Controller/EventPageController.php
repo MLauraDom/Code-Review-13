@@ -23,12 +23,12 @@ use Symfony\Component\Validator\Constraints\Length;
 class EventPageController extends AbstractController
 {
     #[Route('/', name: 'event_page')]
-    
+
     public function index(): Response
     {
         $eventPage = $this->getDoctrine()->getRepository("App:Event")->findAll();
 
-        return $this->render("event_page/index.html.twig", array("eventPage"=>$eventPage));
+        return $this->render("event_page/index.html.twig", array("eventPage" => $eventPage));
     }
 
     #[Route('/create', name: 'create')]
@@ -38,31 +38,31 @@ class EventPageController extends AbstractController
         $event = new Event;
 
         $form = $this->createFormBuilder($event)
-        ->add('name', TextType::class, array('attr' =>array('class'=>'form-control mb-3')))
-        ->add('date', DateTimeType::class, array('attr' =>array('class'=>'form-control mb-3')))
-        ->add('description', TextareaType::class, array('attr' =>array('class'=>'form-control mb-3', 'id'=>'textArea')))
-        ->add('image', TextType::class, array('attr' =>array('class'=>'form-control mb-3')))
-        ->add('capacity', NumberType::class, array('attr' =>array('class'=>'form-control mb-3')))
-        ->add('email', TextType::class, array('attr' =>array('class'=>'form-control mb-3')))
-        ->add('phone', TextType::class, array('attr' =>array('class'=>'form-control mb-3')))
-        ->add('address', TextType::class, array('attr' =>array('class'=>'form-control mb-3')))
-        ->add('url', TextType::class, array('attr' =>array('class'=>'form-control mb-3')))
-        ->add('type', ChoiceType::class, array('choices'=>array('MUSIC'=>'MUSIC', 'SPORT'=>'SPORT', 'THEATER'=>'THEATER', 'MOVIE'=>'MOVIE'), 'attr'=>array('class'=>'form-control mb-3')))
-        ->add('save', SubmitType::class, array('attr'=>array('class'=>'btn btn-info m-auto p-3', 'label'=>'Create Event'))) ->getForm();
+            ->add('name', TextType::class, array('attr' => array('class' => 'form-control mb-3')))
+            ->add('date', DateTimeType::class, array('attr' => array('class' => 'form-control mb-3')))
+            ->add('description', TextareaType::class, array('attr' => array('class' => 'form-control mb-3', 'id' => 'textArea')))
+            ->add('image', TextType::class, array('attr' => array('class' => 'form-control mb-3')))
+            ->add('capacity', NumberType::class, array('attr' => array('class' => 'form-control mb-3', 'type'=>'number')))
+            ->add('email', TextType::class, array('attr' => array('class' => 'form-control mb-3')))
+            ->add('phone', TextType::class, array('attr' => array('class' => 'form-control mb-3')))
+            ->add('address', TextType::class, array('attr' => array('class' => 'form-control mb-3')))
+            ->add('url', TextType::class, array('attr' => array('class' => 'form-control mb-3')))
+            ->add('type', ChoiceType::class, array('choices' => array('MUSIC' => 'MUSIC', 'SPORT' => 'SPORT', 'THEATER' => 'THEATER', 'MOVIE' => 'MOVIE'), 'attr' => array('class' => 'form-control mb-3')))
+            ->add('save', SubmitType::class, array('attr' => array('class' => 'btn btn-info m-auto p-3', 'label' => 'Create Event')))->getForm();
 
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()){
-            $name = $form['name'] -> getData();
-            $date = $form['date'] -> getData();
-            $description = $form['description'] -> getData();
-            $image = $form['image'] -> getData();
-            $capacity = $form['capacity'] -> getData();
-            $email = $form['email'] -> getData();
-            $phone = $form['phone'] -> getData();
-            $address = $form['address'] -> getData();
-            $url = $form['url'] -> getData();
-            $type = $form['type'] -> getData();
+        if ($form->isSubmitted() && $form->isValid()) {
+            $name = $form['name']->getData();
+            $date = $form['date']->getData();
+            $description = $form['description']->getData();
+            $image = $form['image']->getData();
+            $capacity = $form['capacity']->getData();
+            $email = $form['email']->getData();
+            $phone = $form['phone']->getData();
+            $address = $form['address']->getData();
+            $url = $form['url']->getData();
+            $type = $form['type']->getData();
 
             $event->setName($name);
             $event->setDate($date);
@@ -80,14 +80,14 @@ class EventPageController extends AbstractController
             $em->flush();
 
             $this->addFlash('notice', 'Event Added');
-            
+
             return $this->redirectToRoute('event_page');
         }
 
-        return $this->render("event_page/create.html.twig", array('form'=>$form->createView()));
+        return $this->render("event_page/create.html.twig", array('form' => $form->createView()));
     }
 
-   
+
     #[Route('/edit/{id}', name: 'edit')]
 
     public function edit($id, Request $request): Response
@@ -95,31 +95,31 @@ class EventPageController extends AbstractController
         $event = $this->getDoctrine()->getManager()->getRepository("App:Event")->find($id);
 
         $form = $this->createFormBuilder($event)
-        ->add('name', TextType::class, array('attr' =>array('class'=>'form-control mb-3')))
-        ->add('date', DateTimeType::class, array('attr' =>array('class'=>'form-control mb-3')))
-        ->add('description', TextareaType::class, array('attr' =>array('class'=>'form-control mb-3', 'id'=>'textArea')))
-        ->add('image', TextType::class, array('attr' =>array('class'=>'form-control mb-3')))
-        ->add('capacity', NumberType::class, array('attr' =>array('class'=>'form-control mb-3')))
-        ->add('email', TextType::class, array('attr' =>array('class'=>'form-control mb-3')))
-        ->add('phone', TextType::class, array('attr' =>array('class'=>'form-control mb-3')))
-        ->add('address', TextType::class, array('attr' =>array('class'=>'form-control mb-3')))
-        ->add('url', TextType::class, array('attr' =>array('class'=>'form-control mb-3')))
-        ->add('type', ChoiceType::class, array('choices'=>array('MUSIC'=>'MUSIC', 'SPORT'=>'SPORT', 'THEATER'=>'THEATER', 'MOVIE'=>'MOVIE'), 'attr'=>array('class'=>'form-control mb-3')))
-        ->add('save', SubmitType::class, array('attr'=>array('class'=>'btn btn-info m-auto p-3', 'label'=>'Create Event'))) ->getForm();
+            ->add('name', TextType::class, array('attr' => array('class' => 'form-control mb-3')))
+            ->add('date', DateTimeType::class, array('attr' => array('class' => 'form-control mb-3')))
+            ->add('description', TextareaType::class, array('attr' => array('class' => 'form-control mb-3', 'id' => 'textArea')))
+            ->add('image', TextType::class, array('attr' => array('class' => 'form-control mb-3')))
+            ->add('capacity', NumberType::class, array('attr' => array('class' => 'form-control mb-3')))
+            ->add('email', TextType::class, array('attr' => array('class' => 'form-control mb-3')))
+            ->add('phone', TextType::class, array('attr' => array('class' => 'form-control mb-3')))
+            ->add('address', TextType::class, array('attr' => array('class' => 'form-control mb-3')))
+            ->add('url', TextType::class, array('attr' => array('class' => 'form-control mb-3')))
+            ->add('type', ChoiceType::class, array('choices' => array('MUSIC' => 'MUSIC', 'SPORT' => 'SPORT', 'THEATER' => 'THEATER', 'MOVIE' => 'MOVIE'), 'attr' => array('class' => 'form-control mb-3')))
+            ->add('save', SubmitType::class, array('attr' => array('class' => 'btn btn-info m-auto p-3', 'label' => 'Create Event')))->getForm();
 
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()){
-            $name = $form['name'] -> getData();
-            $date = $form['date'] -> getData();
-            $description = $form['description'] -> getData();
-            $image = $form['image'] -> getData();
-            $capacity = $form['capacity'] -> getData();
-            $email = $form['email'] -> getData();
-            $phone = $form['phone'] -> getData();
-            $address = $form['address'] -> getData();
-            $url = $form['url'] -> getData();
-            $type = $form['type'] -> getData();
+        if ($form->isSubmitted() && $form->isValid()) {
+            $name = $form['name']->getData();
+            $date = $form['date']->getData();
+            $description = $form['description']->getData();
+            $image = $form['image']->getData();
+            $capacity = $form['capacity']->getData();
+            $email = $form['email']->getData();
+            $phone = $form['phone']->getData();
+            $address = $form['address']->getData();
+            $url = $form['url']->getData();
+            $type = $form['type']->getData();
 
             $event->setName($name);
             $event->setDate($date);
@@ -137,11 +137,11 @@ class EventPageController extends AbstractController
             $em->flush();
 
             $this->addFlash('notice', 'Event Added');
-            
+
             return $this->redirectToRoute('event_page');
         }
 
-        return $this->render("event_page/create.html.twig", array('form'=>$form->createView()));
+        return $this->render("event_page/create.html.twig", array('form' => $form->createView()));
     }
 
     #[Route('/details/{id}', name: 'details')]
@@ -149,7 +149,7 @@ class EventPageController extends AbstractController
     public function details($id): Response
     {
         $event = $this->getDoctrine()->getManager()->getRepository("App:Event")->find($id);
-        return $this->render("event_page/details.html.twig", array('event'=>$event));
+        return $this->render("event_page/details.html.twig", array('event' => $event));
     }
 
 
@@ -167,27 +167,18 @@ class EventPageController extends AbstractController
 
         return $this->redirectToRoute('event_page');
     }
-    
 
-    
+
+
 
     #[Route('/category/{type}', name: 'category')]
 
     public function category($type): Response
     {
-        $category=[];
+        $repository = $this->getDoctrine()->getRepository(Event::class);
 
-        $event = $this->getDoctrine()->getManager()->getRepository("App:Event")->findAll;
+        $category  = $repository->findBy(['type' => $type]);
 
-        foreach($event as $i) {
-
-            if ($i['type'] == $type){
-                array_push($category, $i);
-            }
-        }
-        
-        return $this->render("event_page/category.html.twig", array('category'=>$category));
+        return $this->render("event_page/category.html.twig", array('category' => $category));
     }
-
-
 }
