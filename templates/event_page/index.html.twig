@@ -11,15 +11,14 @@
 		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 p-5 g-2">
 
 			{% for x in eventPage %}
-			<div class='col p-3'>
+			<div class='col p-4'>
 				<div class="card even shadow-lg bg-body rounded">
-					<img src=url("{{x.image}}") class="card-img-top" alt="{{x.name}}">
+					<img src="{{x.image}}" class="card-img-top pic" alt="{{x.name}}">
                     <div class="card-header">
                         <h5 class="card-title text-center">{{x.name}}</h5>
                     </div>
 					<div class="card-body">
 						<p class="card-text"><b>On </b>{{x.date|date('F j, Y, g:i a')}}</p>
-						<p class="card-text"><b>Adress: </b>{{x.address}}</p>
 						<p class="h5 text-end">{{x.type}}</p>
 					</div>
 					<div class="card-footer">

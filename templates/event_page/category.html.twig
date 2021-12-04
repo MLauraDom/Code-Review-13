@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CR13 - Laura Moldovan
+{% endblock %}
+
+{% block main %}
+	
+
+	<div class="p-5">
+
+		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 p-5 g-2">
+
+			{% for x in event %}
+			<div class='col p-4'>
+				<div class="card even shadow-lg bg-body rounded">
+					<img src="{{x.image}}" class="card-img-top pic" alt="{{x.name}}">
+                    <div class="card-header">
+                        <h5 class="card-title text-center">{{x.name}}</h5>
+                    </div>
+					<div class="card-body">
+						<p class="card-text"><b>On </b>{{x.date|date('F j, Y, g:i a')}}</p>
+						<p class="h5 text-end">{{x.type}}</p>
+					</div>
+					<div class="card-footer">
+						<a class ="btn btn-info btn-small" href="/details/{{x.id}}">
+						&#128065
+						</a>
+						<a class ="btn btn-info btn-small" href="/edit/{{x.id}}">
+						&#128393
+						</a>
+						<a class ="btn btn-info btn-small" href="/delete/{{x.id}}">
+						&#128465
+						</a>
+					</div>
+				</div>
+			</div>
+
+			{% endfor %}
+
+		</div>
+	</div>
+{% endblock %}

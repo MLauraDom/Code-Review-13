@@ -1,10 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}CR13 - Edit Event
+{% block title %}CR13 - Create Event
 {% endblock %}
 
 {% block main %}
 
-Edit
+<div class="p-5">
+<p class="h3 text-center">
+Edit Event
+</p>
+</div>
+<div class="container even w-50 m-auto p-5">
 
+{{form_start(form)}}
+
+{{form_widget(form)}}
+
+{{form_end(form)}}
+
+</div>
 {% endblock %}
